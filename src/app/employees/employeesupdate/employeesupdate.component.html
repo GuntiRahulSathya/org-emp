@@ -1,0 +1,102 @@
+<br/>
+<br/>
+<br/>
+<h1 class="header-info"> Update the Employee </h1>
+<form class="emp_update_form" [formGroup]="employeeUpdateForm" (ngSubmit)="onSubmit(employeeUpdateForm)">
+  <label>
+    SSN:
+    <input type="text" formControlName="ssn" maxlength="9" minlength="9">
+  </label>
+  <div *ngIf="employeeUpdateForm.controls['ssn'].invalid && (employeeUpdateForm.controls['ssn'].dirty || employeeUpdateForm.controls['ssn'].touched)" class="alert">
+    <mat-error> {{ validateSsnVal() }} </mat-error>
+  </div>
+  <label>
+    Employee Id:
+    <input type="text" formControlName="employee_id" minlength="5" maxlength="15">
+  </label>
+  <div *ngIf="employeeUpdateForm.controls['employee_id'].invalid && (employeeUpdateForm.controls['employee_id'].dirty || employeeUpdateForm.controls['employee_id'].touched)" class="alert">
+    <mat-error> {{ checkEmployeeIdVal() }} </mat-error>
+  </div>
+  <br/><br/>
+  <label> First Name:
+    <input type="text" formControlName="first_name">
+  </label>
+  <label> Middle Name:
+    <input type="text" formControlName="middle_name">
+  </label>
+  <label>
+    Last Name:
+    <input type="text" formControlName="last_name">
+  </label><br/><br/>
+  <label>
+    Date of Birth:
+    <input formControlName="dob" type="date" value="2018-07-22" min="1900-01-01" max="2200-12-31">
+  </label>
+  <div *ngIf="employeeUpdateForm.controls['dob'].invalid && (employeeUpdateForm.controls['dob'].dirty || employeeUpdateForm.controls['dob'].touched)" class="alert">
+    <mat-error> {{ validateDOBVal() }} </mat-error>
+  </div>
+  <label>
+    Address1:
+    <input type="text" formControlName="address1">
+  </label>
+  <label>
+    Address2:
+    <input type="text" formControlName="address2">
+  </label>
+  <label>
+    City:
+    <input type="text" formControlName="city">
+  </label><br/><br/>
+  <label>
+    State:
+    <input type="text" formControlName="state">
+  </label>
+  <label>
+    Country:
+    <input type="text" formControlName="country">
+  </label>
+  <label>
+    Zip Code:
+    <input type="text" formControlName="zipcode">
+  </label><br/><br/>
+  <label>
+    Department Number:
+    <select class="custom-select mb-3" formControlName="department_number">
+      <option value="">Choose Department</option>
+      <option *ngFor="let dept of dept_nums" [ngValue]="dept">
+        {{ dept }}
+      </option>
+    </select>
+  </label>
+  <div *ngIf="employeeUpdateForm.controls['department_number'].invalid && (employeeUpdateForm.controls['department_number'].dirty || employeeUpdateForm.controls['department_number'].touched)" class="alert">
+    <mat-error> {{ validateDeptNum() }} </mat-error>
+  </div>
+  <div *ngIf="employeeUpdateForm.controls['department_number'].invalid && (employeeUpdateForm.controls['department_number'].dirty || employeeUpdateForm.controls['department_number'].touched)" class="alert">
+    <div *ngIf="employeeUpdateForm.controls['department_number'].errors?.['required'] ">
+    Please enter department number
+    </div>
+  </div>
+  <label>
+    Join Date:
+    <input formControlName="join_date" type="date" value="2018-07-22" min="1900-01-01" max="2200-12-31">
+  </label>
+  <label>
+    Job Title:
+    <input type="text" formControlName="job_title">
+  </label><br/><br/>
+  <div class="sbmt-btn">
+    <button mat-raised-button type="submit">Update Employee</button>
+  </div>
+</form>
+
+
+<h1 class="header-info"> Delete the Employee </h1>
+<form class="emp_delete_form" [formGroup]="employeeDeleteForm" (ngSubmit)="deleteSubmit(employeeDeleteForm)">
+  <label>
+    Employee Id:
+    <input type="text" formControlName="employee_id" minlength="5" maxlength="15">
+  </label>
+  <div class="sbmt-btn">
+    <button mat-raised-button type="submit">Delete Employee</button>
+  </div>
+</form>

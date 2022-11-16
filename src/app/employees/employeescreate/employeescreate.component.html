@@ -1,0 +1,119 @@
+
+<form class="emp_create_form" [formGroup]="employeeCreateForm" (ngSubmit)="onSubmit(employeeCreateForm)">
+  <label>
+    SSN:
+    <input type="text" formControlName="ssn" maxlength="9" minlength="9">
+  </label>
+  <div *ngIf="employeeCreateForm.controls['ssn'].invalid && (employeeCreateForm.controls['ssn'].dirty || employeeCreateForm.controls['ssn'].touched)" class="alert">
+    <mat-error> {{ validateSsnVal() }} </mat-error>
+  </div>
+  <!-- <label>
+    Employee Id:
+    <input type="text" formControlName="employee_id" minlength="5" maxlength="9">
+  </label>
+  <div *ngIf="employeeCreateForm.controls['employee_id'].invalid && (employeeCreateForm.controls['employee_id'].dirty || employeeCreateForm.controls['employee_id'].touched)" class="alert">
+    <mat-error> {{ validateEmployeeIdVal() }} </mat-error>
+  </div> -->
+  <br/><br/>
+  <label> First Name:
+    <input type="text" formControlName="first_name">
+  </label>
+  <label> Middle Name:
+    <input type="text" formControlName="middle_name">
+  </label>
+  <label>
+    Last Name:
+    <input type="text" formControlName="last_name">
+  </label><br/><br/>
+  <label>
+    Date of Birth:
+    <input formControlName="dob" type="date" value="2018-07-22" min="1900-01-01" max="2200-12-31">
+  </label>
+  <div *ngIf="employeeCreateForm.controls['dob'].invalid && (employeeCreateForm.controls['dob'].dirty || employeeCreateForm.controls['dob'].touched)" class="alert">
+    <mat-error> {{ validateDOBVal() }} </mat-error>
+  </div>
+  <label>
+    Address1:
+    <input type="text" formControlName="address1">
+  </label>
+  <label>
+    Address2:
+    <input type="text" formControlName="address2">
+  </label>
+  <label>
+    City:
+    <input type="text" formControlName="city">
+  </label><br/><br/>
+  <label>
+    State:
+    <input type="text" formControlName="state">
+  </label>
+  <label>
+    Country:
+    <input type="text" formControlName="country">
+  </label>
+  <label>
+    Zip Code:
+    <input type="text" formControlName="zipcode">
+  </label><br/><br/>
+  <label>
+    Department Number:
+    <select class="custom-select mb-3" formControlName="department_number">
+      <option value="">Choose Department</option>
+      <option *ngFor="let dept of dept_nums" [ngValue]="dept">
+        {{ dept }}
+      </option>
+    </select>
+  </label>
+  <div *ngIf="employeeCreateForm.controls['department_number'].invalid && (employeeCreateForm.controls['department_number'].dirty || employeeCreateForm.controls['department_number'].touched)" class="alert">
+    <mat-error> {{ validateDeptNum() }} </mat-error>
+  </div>
+  <div *ngIf="employeeCreateForm.controls['department_number'].invalid && (employeeCreateForm.controls['department_number'].dirty || employeeCreateForm.controls['department_number'].touched)" class="alert">
+    <div *ngIf="employeeCreateForm.controls['department_number'].errors?.['required'] ">
+    Please enter department number
+    </div>
+  </div>
+  <label>
+    Join Date:
+    <input formControlName="join_date" type="date" value="2018-07-22" min="1900-01-01" max="2200-12-31">
+  </label>
+  <label>
+    Job Title:
+    <input type="text" formControlName="job_title">
+  </label><br/><br/>
+  <div class="sbmt-btn">
+    <button mat-raised-button type="submit">{{action.charAt(0).toUpperCase() + action.slice(1)}} Employee</button>
+  </div>
+</form>
+
+
+
+<form class="emp_create_form" [formGroup]="dependentCreateForm" (ngSubmit)="dependentSubmit(dependentCreateForm)">
+  <label> Employee ID:
+    <input type="text" formControlName="employee_id">
+  </label>
+  <div *ngIf="dependentCreateForm.controls['employee_id'].invalid && (dependentCreateForm.controls['employee_id'].dirty || dependentCreateForm.controls['employee_id'].touched)" class="alert">
+    <mat-error> {{ checkEmployeeIdVal() }} </mat-error>
+  </div>
+  <label> Dependent Name:
+    <input type="text" formControlName="dependent_name" minlength="5" maxlength="50">
+  </label>
+  <div *ngIf="dependentCreateForm.controls['dependent_name'].invalid && (dependentCreateForm.controls['dependent_name'].dirty || dependentCreateForm.controls['dependent_name'].touched)" class="alert">
+    <mat-error> {{ validateDependentNameVal() }} </mat-error>
+  </div>
+  <label>
+    Dependent Relation:
+    <select class="custom-select mb-3" formControlName="dependent_relation">
+      <option value="">Choose Dependent Relation</option>
+      <option *ngFor="let depndt_relation of dependent_relations" [ngValue]="depndt_relation">
+        {{ depndt_relation }}
+      </option>
+    </select>
+  </label>
+  <div *ngIf="dependentCreateForm.controls['dependent_relation'].invalid && (dependentCreateForm.controls['dependent_relation'].dirty || dependentCreateForm.controls['dependent_relation'].touched)" class="alert">
+    <mat-error> {{ validateDependentRelationVal() }} </mat-error>
+  </div>
+  <div class="sbmt-btn">
+    <button mat-raised-button type="submit"> Create Dependent</button>
+  </div>
+</form>

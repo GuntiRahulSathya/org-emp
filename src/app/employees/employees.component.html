@@ -1,0 +1,25 @@
+<!-- <p>employees works!</p> -->
+<br/>
+<br/>
+<mat-form-field>
+  <input
+    matInput
+    (keyup)="applyFilter($event.target)"
+    placeholder="Filter"
+  />
+</mat-form-field>
+
+<div class="demo-button-container">
+  <button  mat-raised-button class="demo-button action-btn" type="button" routerLink="/employees/create">Create Employee</button>
+  <button  mat-raised-button class="demo-button action-btn" type="button" routerLink="/employees/update">Update / Remove Employee</button>
+</div>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 employees-table">
+  <ng-container matColumnDef="{{column}}" *ngFor="let column of displayedColumns">
+    <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+    <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+  </ng-container>ß
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
